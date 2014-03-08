@@ -1,0 +1,163 @@
+import numpy as np
+import pylab as plt
+
+#Digital SSB Mixing
+f_smpl = 200. #200MHz
+
+datacos1 = np.fromfile('lomix1_cos_bram','>i')
+datasin1 = np.fromfile('lomix1_sin_bram','>i')
+
+plt.figure(1)
+plt.subplot(211)
+plt.plot(np.arange(0,len(datacos1))/f_smpl,datacos1,color = 'black',label='Real')
+plt.plot(np.arange(0,len(datasin1))/f_smpl,datasin1,color = 'red', label = 'Imaginary')
+plt.title('Digitally Mixed SSB - Complex Waveform')
+plt.legend()
+plt.xlabel('Time [$\mu s$]')
+plt.ylabel('Voltage')
+plt.subplot(212)
+plt.plot(np.fft.fftfreq(len(datacos1),1./200),abs(np.fft.fft(datacos1))**2, color = 'black',linewidth = 3)#,'-kx')
+plt.plot(np.fft.fftfreq(len(datasin1),1/200.),abs(np.fft.fft(datasin1))**2, color = 'red')#,'-kx')
+plt.xlabel('Frequency [MHz]')
+plt.ylabel('Power')
+
+
+datacos2 = np.fromfile('lomix2_cos_bram','>i')
+#plt.figure()
+#plt.subplot(211)
+#plt.title('cosine $f_{LO} = 2$')
+#plt.xlabel('N')
+#plt.ylabel('Power')
+#plt.plot(datacos2)
+plt.subplot(212)
+plt.plot(np.fft.fftfreq(len(datacos2),1/200.),abs(np.fft.fft(datacos2))**2)#,'-kx')
+plt.xlabel('Frequency [MHz]')
+plt.ylabel('Power')
+
+datasin2 = np.fromfile('lomix2_sin_bram','>i')
+#plt.figure()
+#plt.subplot(211)
+#plt.title('sine $f_{LO} = 2$')
+#plt.xlabel('N')
+#plt.ylabel('Power')
+#plt.plot(datasin2)
+plt.subplot(212)
+plt.plot(np.fft.fftfreq(len(datasin2),1/200.),abs(np.fft.fft(datasin2))**2)#,'-kx')
+#plt.xlabel('Frequency [MHz]')
+#plt.ylabel('Power')
+
+
+datacos4 = np.fromfile('lomix4_cos_bram','>i')
+#plt.figure()
+#plt.subplot(211)
+#plt.title('cosine $f_{LO} = 4$')
+#plt.xlabel('N')
+#plt.ylabel('Power')
+#plt.plot(datacos4)
+plt.subplot(212)
+plt.plot(np.fft.fftfreq(len(datacos4),1/200.),abs(np.fft.fft(datacos4))**2)#,'-kx')
+#plt.xlabel('Frequency [MHz]')
+#plt.ylabel('Power')
+
+datasin4 = np.fromfile('lomix4_sin_bram','>i')
+#plt.figure()
+#plt.subplot(211)
+#plt.title('sine $f_{LO} = 4$')
+#plt.xlabel('N')
+#plt.ylabel('Power')
+#plt.plot(datasin4)
+plt.subplot(212)
+plt.plot(np.fft.fftfreq(len(datasin4),1/200.),abs(np.fft.fft(datasin4))**2)#,'-kx')
+#plt.xlabel('Frequency [MHz]')
+#plt.ylabel('Power')
+
+datacos16 = np.fromfile('lomix16_cos_bram','>i')
+#plt.figure()
+#plt.subplot(211)
+#plt.title('cosine $f_{LO} = 16$')
+#plt.xlabel('N')
+#plt.ylabel('Power')
+#plt.plot(datacos16)
+plt.subplot(212)
+plt.plot(np.fft.fftfreq(len(datacos16),1/200.),abs(np.fft.fft(datacos16))**2)#,'-kx')
+#plt.xlabel('Frequency [MHz]')
+#plt.ylabel('Power')
+
+datasin16 = np.fromfile('lomix16_sin_bram','>i')
+#plt.figure()
+#plt.subplot(211)
+#plt.title('sine $f_{LO} = 16$')
+#plt.xlabel('N')
+#plt.ylabel('Power')
+#plt.plot(datasin16)
+plt.subplot(212)
+plt.plot(np.fft.fftfreq(len(datasin16),1/200.),abs(np.fft.fft(datasin16))**2)#,'-kx')
+#plt.xlabel('Frequency [MHz]')
+#plt.ylabel('Power')
+
+"""""
+data5 = np.fromfile('mix_bram_p','>i')
+plt.figure(5)
+plt.subplot(211)
+plt.title('Digital Mixing plus')
+plt.xlabel('N')
+plt.ylabel('Power')
+plt.plot(data5)
+plt.subplot(212)
+plt.plot(np.fft.fftfreq(len(data5)),abs(np.fft.fft(data5))**2,'-kx')
+plt.xlabel('Frequency [MHz]')
+plt.ylabel('Power')
+"""
+
+
+plt.figure(3)
+"""
+full_data1 = datacos1 + 1j*datasin1
+plt.subplot(211)
+plt.plot(np.arange(0,len(full_data1))/f_smpl, full_data1)
+plt.title('Full Complex Waveform')
+plt.xlabel('Time [$\mu s$]')
+plt.ylabel('Voltage')
+plt.subplot(212)
+plt.plot(np.fft.fftfreq(len(full_data1),1./200),abs(np.fft.fft(full_data1))**2)
+plt.xlabel('Frequency [MHz]')
+plt.ylabel('Power')
+"""
+#plt.figure()
+full_data2 = datacos2 + 1j*datasin2
+plt.subplot(211)
+plt.plot(np.arange(0,len(full_data2))/f_smpl, full_data2)
+plt.title('Full Complex Waveform, x = 2')
+plt.xlabel('Time [$\mu s$]')
+plt.ylabel('Voltage')
+plt.subplot(212)
+plt.plot(np.fft.fftfreq(len(full_data2),1./200),abs(np.fft.fft(full_data2))**2)
+plt.xlabel('Frequency [MHz]')
+plt.ylabel('Power')
+"""
+plt.figure()
+full_data4 = datacos4 + 1j*datasin4
+plt.subplot(211)
+plt.plot(np.arange(0,len(full_data4))/f_smpl, full_data4)
+plt.title('Full Complex Waveform')
+plt.xlabel('Time [$\mu s$]')
+plt.ylabel('Voltage')
+plt.subplot(212)
+plt.plot(np.fft.fftfreq(len(full_data4),1./200),abs(np.fft.fft(full_data4))**2)
+plt.xlabel('Frequency [MHz]')
+plt.ylabel('Power')
+
+
+plt.figure()
+full_data16 = datacos16 + 1j*datasin16
+plt.subplot(211)
+plt.plot(np.arange(0,len(full_data16))/f_smpl, full_data16)
+plt.title('Full Complex Waveform')
+plt.xlabel('Time [$\mu s$]')
+plt.ylabel('Voltage')
+plt.subplot(212)
+plt.plot(np.fft.fftfreq(len(full_data16),1./200),abs(np.fft.fft(full_data16))**2)
+plt.xlabel('Frequency [MHz]')
+plt.ylabel('Power')
+"""
+#filter out higher frequencies then inverse fourier transform
